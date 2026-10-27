@@ -39,7 +39,7 @@
       <section class="window hero-window" data-window-panel="home" aria-labelledby="welcome-title">
         <div class="title-bar">
           <span class="title-bar-label"><span class="mini-icon">🌐</span> Welcome.exe</span>
-          <div class="window-controls" aria-hidden="true"><span>_</span><span>□</span><span>×</span></div>
+          <div class="window-controls"><button data-window-action="minimize" aria-label="Minimize Welcome.exe">_</button><button data-window-action="maximize" aria-label="Maximize Welcome.exe">□</button><button data-window-action="close" aria-label="Close Welcome.exe">×</button></div>
         </div>
         <div class="window-body hero-body">
           <p class="eyebrow">PORTFOLIO SYSTEM // ONLINE</p>
@@ -55,7 +55,7 @@
       </section>
 
       <section class="window hidden" data-window-panel="about" aria-labelledby="about-title">
-        <div class="title-bar"><span class="title-bar-label"><span class="mini-icon">👨🏽‍💻</span> About Me</span><button class="close-button" data-close="about" aria-label="Close About Me">×</button></div>
+        <div class="title-bar"><span class="title-bar-label"><span class="mini-icon">👨🏽‍💻</span> About Me</span><div class="window-controls"><button data-window-action="minimize" aria-label="Minimize About Me">_</button><button data-window-action="maximize" aria-label="Maximize About Me">□</button><button data-window-action="close" aria-label="Close About Me">×</button></div></div>
         <div class="window-body content-body">
           <p class="eyebrow">ABOUT.TXT</p>
           <h2 id="about-title">Building things that <span>make sense.</span></h2>
@@ -71,7 +71,7 @@
       </section>
 
       <section class="window hidden wide-window" data-window-panel="projects" aria-labelledby="projects-title">
-        <div class="title-bar"><span class="title-bar-label"><span class="mini-icon">📁</span> Projects</span><button class="close-button" data-close="projects" aria-label="Close Projects">×</button></div>
+        <div class="title-bar"><span class="title-bar-label"><span class="mini-icon">📁</span> Projects</span><div class="window-controls"><button data-window-action="minimize" aria-label="Minimize Projects">_</button><button data-window-action="maximize" aria-label="Maximize Projects">□</button><button data-window-action="close" aria-label="Close Projects">×</button></div></div>
         <div class="window-body content-body">
           <p class="eyebrow">C:\NIPUN\PROJECTS</p>
           <h2 id="projects-title">Selected <span>work.</span></h2>
@@ -85,7 +85,7 @@
       </section>
 
       <section class="window hidden" data-window-panel="skills" aria-labelledby="skills-title">
-        <div class="title-bar"><span class="title-bar-label"><span class="mini-icon">🖥️</span> My Computer</span><button class="close-button" data-close="skills" aria-label="Close My Computer">×</button></div>
+        <div class="title-bar"><span class="title-bar-label"><span class="mini-icon">🖥️</span> My Computer</span><div class="window-controls"><button data-window-action="minimize" aria-label="Minimize My Computer">_</button><button data-window-action="maximize" aria-label="Maximize My Computer">□</button><button data-window-action="close" aria-label="Close My Computer">×</button></div></div>
         <div class="window-body content-body">
           <p class="eyebrow">SYSTEM PROPERTIES</p><h2 id="skills-title">My <span>toolbox.</span></h2>
           <div class="skill-group"><h3>Development</h3><div class="skill-pills"><span>JavaScript</span><span>Java</span><span>C#</span><span>C++</span><span>Dart</span><span>PHP</span></div></div>
@@ -96,7 +96,7 @@
       </section>
 
       <section class="window hidden" data-window-panel="experience" aria-labelledby="experience-title">
-        <div class="title-bar"><span class="title-bar-label"><span class="mini-icon">📄</span> Experience.doc</span><button class="close-button" data-close="experience" aria-label="Close Experience">×</button></div>
+        <div class="title-bar"><span class="title-bar-label"><span class="mini-icon">📄</span> Experience.doc</span><div class="window-controls"><button data-window-action="minimize" aria-label="Minimize Experience">_</button><button data-window-action="maximize" aria-label="Maximize Experience">□</button><button data-window-action="close" aria-label="Close Experience">×</button></div></div>
         <div class="window-body content-body"><p class="eyebrow">WORK HISTORY</p><h2 id="experience-title">The <span>journey.</span></h2>
           <div class="timeline"><div class="timeline-item"><span class="timeline-dot"></span><div><p class="date">MAR 2025 — SEP 2025</p><h3>Trainee Software Developer</h3><p class="muted">Sri Lanka Telecom PLC · Colombo</p><p>Contributed to internal systems and a fiber-laying monitoring solution using .NET Core, SQL Server, Azure AD and modern web technologies.</p></div></div>
           <div class="timeline-item"><span class="timeline-dot"></span><div><p class="date">2024 — 2026</p><h3>B.Sc. (Hons) Software Engineering</h3><p class="muted">University of Bedfordshire, United Kingdom</p><p>Graduated with Second-Class Upper Honours.</p></div></div>
@@ -105,13 +105,13 @@
       </section>
 
       <section class="window hidden contact-window" data-window-panel="contact" aria-labelledby="contact-title">
-        <div class="title-bar"><span class="title-bar-label"><span class="mini-icon">✉️</span> Contact Me</span><button class="close-button" data-close="contact" aria-label="Close Contact Me">×</button></div>
+        <div class="title-bar"><span class="title-bar-label"><span class="mini-icon">✉️</span> Contact Me</span><div class="window-controls"><button data-window-action="minimize" aria-label="Minimize Contact Me">_</button><button data-window-action="maximize" aria-label="Maximize Contact Me">□</button><button data-window-action="close" aria-label="Close Contact Me">×</button></div></div>
         <div class="window-body content-body"><p class="eyebrow">SEND_MESSAGE.EXE</p><h2 id="contact-title">Let’s make something <span>useful.</span></h2><p>Have an idea, an opportunity, or just want to say hello? My inbox is open.</p>
           <div class="contact-links"><a href="mailto:nipun0425@gmail.com"><span>✉</span><div><strong>Email</strong><small>nipun0425@gmail.com</small></div></a><a href="https://github.com/nk405" target="_blank" rel="noreferrer"><span>◉</span><div><strong>GitHub</strong><small>github.com/nk405</small></div></a><a href="https://linkedin.com/in/nipun-kaushalya" target="_blank" rel="noreferrer"><span>in</span><div><strong>LinkedIn</strong><small>linkedin.com/in/nipun-kaushalya</small></div></a></div>
         </div>
       </section>
 
-      <footer class="taskbar"><button class="start-button"><span class="windows-flag">▣</span> Start</button><div class="taskbar-divider"></div><button class="task-item active-task" data-window="home">🌐 Welcome.exe</button><div class="system-tray"><span>🔊</span><time id="clock">12:00 PM</time></div></footer>
+      <footer class="taskbar"><button class="start-button"><span class="windows-flag">▣</span> Start</button><div class="taskbar-divider"></div><div class="task-items"></div><div class="system-tray"><span>🔊</span><time id="clock">12:00 PM</time></div></footer>
     </main>
     <script src="script.js"></script>
   </body>

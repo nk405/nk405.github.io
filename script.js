@@ -1,15 +1,82 @@
 const desktop = document.querySelector('#desktop');
 const panels = [...document.querySelectorAll('[data-window-panel]')];
-const taskButton = document.querySelector('.task-item');
+const taskItems = document.querySelector('.task-items');
 let highestZIndex = 2;
+let activeWindow = 'home';
+const savedPositions = new WeakMap();
+
+function getTaskButton(name) {
+  return taskItems.querySelector(`[data-task-window="${name}"]`);
+}
+
+function ensureTaskButton(panel) {
+  const name = panel.dataset.windowPanel;
+  let button = getTaskButton(name);
+  if (!button) {
+    button = document.createElement('button');
+    button.className = 'task-item';
+    button.dataset.taskWindow = name;
+    button.type = 'button';
+    button.textContent = panel.querySelector('.title-bar-label').textContent.trim();
+    taskItems.append(button);
+  }
+  return button;
+}
+
+ensureTaskButton(document.querySelector('[data-window-panel="home"]')).classList.add('active-task');
 
 function openWindow(name) {
   const panel = document.querySelector(`[data-window-panel="${name}"]`);
   if (!panel) return;
-  panels.forEach((item) => item.classList.toggle('hidden', item !== panel));
-  taskButton.classList.toggle('active-task', name === 'home');
+  panels.forEach((item) => {
+    if (item !== panel && !item.classList.contains('minimized')) item.classList.add('hidden');
+  });
+  panel.classList.remove('hidden', 'minimized');
+  activeWindow = name;
+  taskItems.querySelectorAll('.task-item').forEach((item) => item.classList.remove('active-task'));
+  ensureTaskButton(panel).classList.add('active-task');
   panel.style.zIndex = ++highestZIndex;
-  if (name !== 'home') panel.querySelector('.close-button')?.focus();
+  panel.querySelector('[data-window-action="close"]')?.focus();
+}
+
+function closeWindow(panel) {
+  panel.classList.add('hidden');
+  panel.classList.remove('minimized');
+  getTaskButton(panel.dataset.windowPanel)?.remove();
+  if (activeWindow === panel.dataset.windowPanel) {
+    activeWindow = 'home';
+    taskItems.querySelectorAll('.task-item').forEach((item) => item.classList.remove('active-task'));
+  }
+}
+
+function minimizeWindow(panel) {
+  panel.classList.add('hidden', 'minimized');
+  getTaskButton(panel.dataset.windowPanel)?.classList.remove('active-task');
+}
+
+function toggleMaximize(panel) {
+  const maximizeButton = panel.querySelector('[data-window-action="maximize"]');
+  if (panel.classList.contains('maximized')) {
+    panel.classList.remove('maximized');
+    maximizeButton.setAttribute('aria-label', `Maximize ${panel.querySelector('.title-bar-label').textContent.trim()}`);
+    const position = savedPositions.get(panel);
+    if (position) {
+      panel.style.position = position.position;
+      panel.style.left = position.left;
+      panel.style.top = position.top;
+      panel.style.margin = position.margin;
+    }
+  } else {
+    savedPositions.set(panel, {
+      position: panel.style.position,
+      left: panel.style.left,
+      top: panel.style.top,
+      margin: panel.style.margin,
+    });
+    panel.classList.add('maximized');
+    maximizeButton.setAttribute('aria-label', `Restore ${panel.querySelector('.title-bar-label').textContent.trim()}`);
+  }
+  panel.style.zIndex = ++highestZIndex;
 }
 
 desktop.addEventListener('click', (event) => {
@@ -18,13 +85,20 @@ desktop.addEventListener('click', (event) => {
     event.preventDefault();
     openWindow(trigger.dataset.window);
   }
-  const close = event.target.closest('[data-close]');
-  if (close) {
-    openWindow('home');
+  const action = event.target.closest('[data-window-action]');
+  if (action) {
+    const panel = action.closest('.window');
+    if (action.dataset.windowAction === 'close') closeWindow(panel);
+    if (action.dataset.windowAction === 'minimize') minimizeWindow(panel);
+    if (action.dataset.windowAction === 'maximize') toggleMaximize(panel);
   }
 });
 
-document.querySelector('.start-button').addEventListener('click', () => openWindow('home'));
+document.querySelector('.start-button').addEventListener('click', () => openWindow(activeWindow));
+taskItems.addEventListener('click', (event) => {
+  const button = event.target.closest('[data-task-window]');
+  if (button) openWindow(button.dataset.taskWindow);
+});
 
 document.querySelectorAll('.title-bar').forEach((titleBar) => {
   titleBar.addEventListener('pointerdown', (event) => {
@@ -32,6 +106,7 @@ document.querySelectorAll('.title-bar').forEach((titleBar) => {
 
     const panel = titleBar.closest('.window');
     if (window.matchMedia('(max-width: 760px)').matches) return;
+    if (panel.classList.contains('maximized')) return;
 
     const panelRect = panel.getBoundingClientRect();
     const desktopRect = desktop.getBoundingClientRect();
