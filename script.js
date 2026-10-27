@@ -1,6 +1,8 @@
 const desktop = document.querySelector('#desktop');
 const panels = [...document.querySelectorAll('[data-window-panel]')];
 const taskItems = document.querySelector('.task-items');
+const startMenu = document.querySelector('.start-menu');
+const startButton = document.querySelector('.start-button');
 let highestZIndex = 2;
 let activeWindow = 'home';
 const savedPositions = new WeakMap();
@@ -83,6 +85,8 @@ desktop.addEventListener('click', (event) => {
   const trigger = event.target.closest('[data-window]');
   if (trigger) {
     event.preventDefault();
+    startMenu.classList.add('hidden');
+    startButton.setAttribute('aria-expanded', 'false');
     openWindow(trigger.dataset.window);
   }
   const action = event.target.closest('[data-window-action]');
@@ -94,10 +98,30 @@ desktop.addEventListener('click', (event) => {
   }
 });
 
-document.querySelector('.start-button').addEventListener('click', () => openWindow(activeWindow));
+startMenu.addEventListener('click', (event) => {
+  const trigger = event.target.closest('[data-window]');
+  if (!trigger) return;
+  event.preventDefault();
+  startMenu.classList.add('hidden');
+  startButton.setAttribute('aria-expanded', 'false');
+  openWindow(trigger.dataset.window);
+});
+
+startButton.addEventListener('click', (event) => {
+  event.stopPropagation();
+  const isOpen = !startMenu.classList.toggle('hidden');
+  startButton.setAttribute('aria-expanded', String(isOpen));
+});
 taskItems.addEventListener('click', (event) => {
   const button = event.target.closest('[data-task-window]');
   if (button) openWindow(button.dataset.taskWindow);
+});
+
+document.addEventListener('click', (event) => {
+  if (!event.target.closest('.start-menu') && !event.target.closest('.start-button')) {
+    startMenu.classList.add('hidden');
+    startButton.setAttribute('aria-expanded', 'false');
+  }
 });
 
 document.querySelectorAll('.title-bar').forEach((titleBar) => {

@@ -3,13 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Nipun Kaushalya — Software Engineer portfolio" />
-    <title>Nipun Kaushalya — Windows 98 Portfolio</title>
+    <meta name="description" content="Nipun Kaushalya - Software Engineer" />
+    <title>Nipun Kaushalya</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <main class="desktop" id="desktop">
       <div class="desktop-grid" aria-label="Portfolio desktop">
+        <button class="desktop-icon" data-window="home">
+          <span class="icon-art" aria-hidden="true">🌐</span>
+          <span>Welcome.exe</span>
+        </button>
         <button class="desktop-icon" data-window="about">
           <span class="icon-art icon-user" aria-hidden="true">👨🏽‍💻</span>
           <span>About Me</span>
@@ -42,10 +46,9 @@
           <div class="window-controls"><button data-window-action="minimize" aria-label="Minimize Welcome.exe">_</button><button data-window-action="maximize" aria-label="Maximize Welcome.exe">□</button><button data-window-action="close" aria-label="Close Welcome.exe">×</button></div>
         </div>
         <div class="window-body hero-body">
-          <p class="eyebrow">PORTFOLIO SYSTEM // ONLINE</p>
           <h1 id="welcome-title">Hi, I’m <span>Nipun.</span></h1>
           <p class="hero-role">Software Engineer <b>·</b> Full-Stack Developer</p>
-          <p class="hero-copy">I build useful digital experiences from the database to the interface — with a soft spot for clean systems and curious ideas.</p>
+          <p class="hero-copy">I build useful digital experiences from the database to the interface, with a soft spot for clean systems and curious ideas.</p>
           <div class="hero-actions">
             <button class="win-button primary" data-window="projects">View my work</button>
             <button class="win-button" data-window="contact">Let’s talk</button>
@@ -98,9 +101,9 @@
       <section class="window hidden" data-window-panel="experience" aria-labelledby="experience-title">
         <div class="title-bar"><span class="title-bar-label"><span class="mini-icon">📄</span> Experience.doc</span><div class="window-controls"><button data-window-action="minimize" aria-label="Minimize Experience">_</button><button data-window-action="maximize" aria-label="Maximize Experience">□</button><button data-window-action="close" aria-label="Close Experience">×</button></div></div>
         <div class="window-body content-body"><p class="eyebrow">WORK HISTORY</p><h2 id="experience-title">The <span>journey.</span></h2>
-          <div class="timeline"><div class="timeline-item"><span class="timeline-dot"></span><div><p class="date">MAR 2025 — SEP 2025</p><h3>Trainee Software Developer</h3><p class="muted">Sri Lanka Telecom PLC · Colombo</p><p>Contributed to internal systems and a fiber-laying monitoring solution using .NET Core, SQL Server, Azure AD and modern web technologies.</p></div></div>
-          <div class="timeline-item"><span class="timeline-dot"></span><div><p class="date">2024 — 2026</p><h3>B.Sc. (Hons) Software Engineering</h3><p class="muted">University of Bedfordshire, United Kingdom</p><p>Graduated with Second-Class Upper Honours.</p></div></div>
-          <div class="timeline-item"><span class="timeline-dot"></span><div><p class="date">SEP 2025 — PRESENT</p><h3>Website & Digital Experience</h3><p class="muted">PMI APAC Agile Regional Hub · Volunteer</p><p>Supporting digital experiences and web presence for the regional agile community.</p></div></div></div>
+          <div class="timeline"><div class="timeline-item"><span class="timeline-dot"></span><div><p class="date">MAR 2025 - SEP 2025</p><h3>Trainee Software Developer</h3><p class="muted">Sri Lanka Telecom PLC · Colombo</p><p>Contributed to internal systems and a fiber-laying monitoring solution using .NET Core, SQL Server, Azure AD and modern web technologies.</p></div></div>
+          <div class="timeline-item"><span class="timeline-dot"></span><div><p class="date">2024 - 2026</p><h3>B.Sc. (Hons) Software Engineering</h3><p class="muted">University of Bedfordshire, United Kingdom</p><p>Graduated with Second-Class Upper Honours.</p></div></div>
+          <div class="timeline-item"><span class="timeline-dot"></span><div><p class="date">SEP 2025 - PRESENT</p><h3>Website & Digital Experience</h3><p class="muted">PMI APAC Agile Regional Hub · Volunteer</p><p>Supporting digital experiences and web presence for the regional agile community.</p></div></div></div>
         </div>
       </section>
 
@@ -111,7 +114,19 @@
         </div>
       </section>
 
-      <footer class="taskbar"><button class="start-button"><span class="windows-flag">▣</span> Start</button><div class="taskbar-divider"></div><div class="task-items"></div><div class="system-tray"><span>🔊</span><time id="clock">12:00 PM</time></div></footer>
+      <div class="start-menu hidden" aria-label="Start menu">
+        <div class="start-menu-brand"><span>Portfolio</span></div>
+        <div class="start-menu-items">
+          <button class="start-menu-item" data-window="home"><span>🌐</span>Welcome.exe</button>
+          <button class="start-menu-item" data-window="about"><span>👨🏽‍💻</span>About Me</button>
+          <button class="start-menu-item" data-window="projects"><span>📁</span>Projects</button>
+          <button class="start-menu-item" data-window="skills"><span>🖥️</span>My Computer</button>
+          <button class="start-menu-item" data-window="experience"><span>📄</span>Experience</button>
+          <button class="start-menu-item" data-window="contact"><span>✉️</span>Contact Me</button>
+          <a class="start-menu-item" href="CV_Nipun_Kaushalya.pdf" download><span>📥</span>Download CV</a>
+        </div>
+      </div>
+      <footer class="taskbar"><button class="start-button" aria-expanded="false"><span class="windows-flag">▣</span> Start</button><div class="taskbar-divider"></div><div class="task-items"></div><div class="system-tray"><span>🔊</span><time id="clock">12:00 PM</time></div></footer>
     </main>
     <script src="script.js"></script>
   </body>
