@@ -6,6 +6,7 @@ const startButton = document.querySelector('.start-button');
 let highestZIndex = 2;
 let activeWindow = 'home';
 const savedPositions = new WeakMap();
+const openedWindows = new WeakSet([document.querySelector('[data-window-panel="home"]')]);
 
 function getTaskButton(name) {
   return taskItems.querySelector(`[data-task-window="${name}"]`);
@@ -25,35 +26,73 @@ function ensureTaskButton(panel) {
   return button;
 }
 
-ensureTaskButton(document.querySelector('[data-window-panel="home"]')).classList.add('active-task');
+function focusWindow(panel) {
+  activeWindow = panel.dataset.windowPanel;
+  taskItems.querySelectorAll('.task-item').forEach((item) => item.classList.remove('active-task'));
+  ensureTaskButton(panel).classList.add('active-task');
+  panel.style.zIndex = ++highestZIndex;
+}
+
+function centerWindow(panel) {
+  if (window.matchMedia('(max-width: 760px)').matches) {
+    panel.style.margin = '0';
+    panel.style.position = 'fixed';
+    panel.style.left = '50%';
+    panel.style.top = '50%';
+    panel.style.transform = 'translate(-50%, -50%)';
+    return;
+  }
+
+  const maxLeft = Math.max(0, desktop.clientWidth - panel.offsetWidth);
+  const maxTop = Math.max(0, desktop.clientHeight - 36 - panel.offsetHeight);
+  panel.style.margin = '0';
+  panel.style.position = 'absolute';
+  panel.style.left = `${Math.max(0, (maxLeft / 2))}px`;
+  panel.style.top = `${Math.max(0, (maxTop / 2))}px`;
+  panel.style.transform = 'none';
+}
+
+const homePanel = document.querySelector('[data-window-panel="home"]');
+centerWindow(homePanel);
+ensureTaskButton(homePanel).classList.add('active-task');
 
 function openWindow(name) {
   const panel = document.querySelector(`[data-window-panel="${name}"]`);
   if (!panel) return;
-  panels.forEach((item) => {
-    if (item !== panel && !item.classList.contains('minimized')) item.classList.add('hidden');
-  });
+  const isNewWindow = !openedWindows.has(panel);
   panel.classList.remove('hidden', 'minimized');
-  activeWindow = name;
-  taskItems.querySelectorAll('.task-item').forEach((item) => item.classList.remove('active-task'));
-  ensureTaskButton(panel).classList.add('active-task');
-  panel.style.zIndex = ++highestZIndex;
+  if (isNewWindow) {
+    centerWindow(panel);
+    openedWindows.add(panel);
+  }
+  focusWindow(panel);
   panel.querySelector('[data-window-action="close"]')?.focus();
 }
 
 function closeWindow(panel) {
   panel.classList.add('hidden');
-  panel.classList.remove('minimized');
+  panel.classList.remove('minimized', 'maximized');
+  openedWindows.delete(panel);
   getTaskButton(panel.dataset.windowPanel)?.remove();
   if (activeWindow === panel.dataset.windowPanel) {
-    activeWindow = 'home';
-    taskItems.querySelectorAll('.task-item').forEach((item) => item.classList.remove('active-task'));
+    const nextPanel = panels
+      .filter((item) => item !== panel && !item.classList.contains('hidden') && !item.classList.contains('minimized'))
+      .sort((a, b) => Number(b.style.zIndex || 0) - Number(a.style.zIndex || 0))[0];
+    if (nextPanel) focusWindow(nextPanel);
+    else activeWindow = null;
   }
 }
 
 function minimizeWindow(panel) {
   panel.classList.add('hidden', 'minimized');
   getTaskButton(panel.dataset.windowPanel)?.classList.remove('active-task');
+  if (activeWindow === panel.dataset.windowPanel) {
+    const nextPanel = panels
+      .filter((item) => item !== panel && !item.classList.contains('hidden') && !item.classList.contains('minimized'))
+      .sort((a, b) => Number(b.style.zIndex || 0) - Number(a.style.zIndex || 0))[0];
+    if (nextPanel) focusWindow(nextPanel);
+    else activeWindow = null;
+  }
 }
 
 function toggleMaximize(panel) {
@@ -171,7 +210,15 @@ startButton.addEventListener('click', (event) => {
 });
 taskItems.addEventListener('click', (event) => {
   const button = event.target.closest('[data-task-window]');
-  if (button) openWindow(button.dataset.taskWindow);
+  if (!button) return;
+
+  const panel = document.querySelector(`[data-window-panel="${button.dataset.taskWindow}"]`);
+  if (!panel) return;
+  if (activeWindow === button.dataset.taskWindow && !panel.classList.contains('hidden')) {
+    minimizeWindow(panel);
+  } else {
+    openWindow(button.dataset.taskWindow);
+  }
 });
 
 document.addEventListener('click', (event) => {
@@ -220,6 +267,17 @@ document.querySelectorAll('.title-bar').forEach((titleBar) => {
     titleBar.addEventListener('pointermove', moveWindow);
     titleBar.addEventListener('pointerup', stopDragging);
     titleBar.addEventListener('pointercancel', stopDragging);
+  });
+
+  titleBar.addEventListener('dblclick', (event) => {
+    if (event.target.closest('button')) return;
+    toggleMaximize(titleBar.closest('.window'));
+  });
+});
+
+panels.forEach((panel) => {
+  panel.addEventListener('pointerdown', () => {
+    if (!panel.classList.contains('hidden') && !panel.classList.contains('minimized')) focusWindow(panel);
   });
 });
 
