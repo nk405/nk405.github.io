@@ -84,6 +84,19 @@ function toggleMaximize(panel) {
 desktop.addEventListener('click', (event) => {
   const trigger = event.target.closest('[data-window]');
   if (trigger) {
+    if (trigger.classList.contains('desktop-icon')) {
+      if (trigger.dataset.dragged === 'true') delete trigger.dataset.dragged;
+      else if (event.detail === 2) {
+        startMenu.classList.add('hidden');
+        startButton.setAttribute('aria-expanded', 'false');
+        openWindow(trigger.dataset.window);
+      }
+      return;
+    }
+    if (trigger.dataset.dragged === 'true') {
+      delete trigger.dataset.dragged;
+      return;
+    }
     event.preventDefault();
     startMenu.classList.add('hidden');
     startButton.setAttribute('aria-expanded', 'false');
@@ -96,6 +109,50 @@ desktop.addEventListener('click', (event) => {
     if (action.dataset.windowAction === 'minimize') minimizeWindow(panel);
     if (action.dataset.windowAction === 'maximize') toggleMaximize(panel);
   }
+});
+
+document.querySelectorAll('.desktop-icon[data-window]').forEach((icon) => {
+  icon.addEventListener('pointerdown', (event) => {
+    if (window.matchMedia('(max-width: 760px)').matches) return;
+
+    const desktopRect = desktop.getBoundingClientRect();
+    const iconRect = icon.getBoundingClientRect();
+    const offsetX = event.clientX - iconRect.left;
+    const offsetY = event.clientY - iconRect.top;
+    const maxX = desktopRect.width - iconRect.width;
+    const maxY = desktopRect.height - iconRect.height - 36;
+    let moved = false;
+    let dragging = false;
+    icon.setPointerCapture(event.pointerId);
+
+    const moveIcon = (moveEvent) => {
+      const x = moveEvent.clientX - desktopRect.left - offsetX;
+      const y = moveEvent.clientY - desktopRect.top - offsetY;
+      if (!dragging && (Math.abs(moveEvent.clientX - event.clientX) > 3 || Math.abs(moveEvent.clientY - event.clientY) > 3)) {
+        dragging = true;
+        moved = true;
+        icon.style.position = 'absolute';
+        icon.style.left = `${iconRect.left - desktopRect.left}px`;
+        icon.style.top = `${iconRect.top - desktopRect.top}px`;
+        icon.style.zIndex = '3';
+        icon.classList.add('dragging');
+      }
+      if (!dragging) return;
+      icon.style.left = `${Math.max(0, Math.min(x, maxX))}px`;
+      icon.style.top = `${Math.max(0, Math.min(y, maxY))}px`;
+    };
+    const stopDragging = () => {
+      if (moved) icon.dataset.dragged = 'true';
+      icon.removeEventListener('pointermove', moveIcon);
+      icon.removeEventListener('pointerup', stopDragging);
+      icon.removeEventListener('pointercancel', stopDragging);
+      icon.classList.remove('dragging');
+    };
+
+    icon.addEventListener('pointermove', moveIcon);
+    icon.addEventListener('pointerup', stopDragging);
+    icon.addEventListener('pointercancel', stopDragging);
+  });
 });
 
 startMenu.addEventListener('click', (event) => {
