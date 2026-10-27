@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Nipun Kaushalya — Software Engineer portfolio" />
+    <title>Nipun Kaushalya — Windows 98 Portfolio</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="desktop" id="desktop">
+      <div class="desktop-grid" aria-label="Portfolio desktop">
+        <button class="desktop-icon" data-window="about">
+          <span class="icon-art icon-user" aria-hidden="true">👨🏽‍💻</span>
+          <span>About Me</span>
+        </button>
+        <button class="desktop-icon" data-window="projects">
+          <span class="icon-art" aria-hidden="true">📁</span>
+          <span>Projects</span>
+        </button>
+        <button class="desktop-icon" data-window="skills">
+          <span class="icon-art" aria-hidden="true">🖥️</span>
+          <span>My Computer</span>
+        </button>
+        <button class="desktop-icon" data-window="experience">
+          <span class="icon-art" aria-hidden="true">📄</span>
+          <span>Experience</span>
+        </button>
+        <button class="desktop-icon" data-window="contact">
+          <span class="icon-art" aria-hidden="true">✉️</span>
+          <span>Contact Me</span>
+        </button>
+        <a class="desktop-icon" href="CV_Nipun_Kaushalya.pdf" download>
+          <span class="icon-art" aria-hidden="true">📥</span>
+          <span>Download CV</span>
+        </a>
+      </div>
+
+      <section class="window hero-window" data-window-panel="home" aria-labelledby="welcome-title">
+        <div class="title-bar">
+          <span class="title-bar-label"><span class="mini-icon">🌐</span> Welcome.exe</span>
+          <div class="window-controls" aria-hidden="true"><span>_</span><span>□</span><span>×</span></div>
+        </div>
+        <div class="window-body hero-body">
+          <p class="eyebrow">PORTFOLIO SYSTEM // ONLINE</p>
+          <h1 id="welcome-title">Hi, I’m <span>Nipun.</span></h1>
+          <p class="hero-role">Software Engineer <b>·</b> Full-Stack Developer</p>
+          <p class="hero-copy">I build useful digital experiences from the database to the interface — with a soft spot for clean systems and curious ideas.</p>
+          <div class="hero-actions">
+            <button class="win-button primary" data-window="projects">View my work</button>
+            <button class="win-button" data-window="contact">Let’s talk</button>
+          </div>
+        </div>
+        <div class="status-bar"><span>Ready</span><span>© 2026 Nipun Kaushalya</span></div>
+      </section>
+
+      <section class="window hidden" data-window-panel="about" aria-labelledby="about-title">
+        <div class="title-bar"><span class="title-bar-label"><span class="mini-icon">👨🏽‍💻</span> About Me</span><button class="close-button" data-close="about" aria-label="Close About Me">×</button></div>
+        <div class="window-body content-body">
+          <p class="eyebrow">ABOUT.TXT</p>
+          <h2 id="about-title">Building things that <span>make sense.</span></h2>
+          <p>I’m a Software Engineering graduate from Sri Lanka with hands-on experience building full-stack web and mobile applications. I enjoy turning complex operational problems into simple, dependable tools.</p>
+          <p>My toolkit spans JavaScript, React, Node.js, .NET Core, Flutter, SQL Server, MongoDB and Microsoft Azure. I’m currently exploring better ways to combine thoughtful UX with robust engineering.</p>
+          <div class="info-grid">
+            <div><strong>Based in</strong><br />Aranayake, Sri Lanka</div>
+            <div><strong>Education</strong><br />B.Sc. (Hons) Software Engineering</div>
+            <div><strong>Availability</strong><br />Open to opportunities</div>
+            <div><strong>Honours</strong><br />Second-Class Upper</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="window hidden wide-window" data-window-panel="projects" aria-labelledby="projects-title">
+        <div class="title-bar"><span class="title-bar-label"><span class="mini-icon">📁</span> Projects</span><button class="close-button" data-close="projects" aria-label="Close Projects">×</button></div>
+        <div class="window-body content-body">
+          <p class="eyebrow">C:\NIPUN\PROJECTS</p>
+          <h2 id="projects-title">Selected <span>work.</span></h2>
+          <div class="project-list">
+            <article class="project-card"><div class="project-number">01</div><div><h3>Fiber-Laying Monitoring System</h3><p>Role-based dashboards that centralize project progress and surface operational issues for Sri Lanka Telecom.</p><div class="tags"><span>.NET Core</span><span>SQL Server</span><span>Azure AD</span></div></div></article>
+            <article class="project-card"><div class="project-number">02</div><div><h3>Stock Management System</h3><p>A full-stack inventory and reporting platform with an integrated AI assistant for a hardware supplier.</p><div class="tags"><span>React</span><span>Node.js</span><span>MongoDB</span></div></div></article>
+            <article class="project-card"><div class="project-number">03</div><div><h3>SLT NOC App</h3><p>A centralized mobile experience for live network alarms and planned outage monitoring.</p><div class="tags"><span>Flutter</span><span>Dart</span><span>REST API</span></div></div></article>
+            <article class="project-card"><div class="project-number">04</div><div><h3>Medical Lab Management</h3><p>Patient records, test results and appointment management in one focused web application.</p><div class="tags"><span>React</span><span>Express</span><span>MongoDB</span></div></div></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="window hidden" data-window-panel="skills" aria-labelledby="skills-title">
+        <div class="title-bar"><span class="title-bar-label"><span class="mini-icon">🖥️</span> My Computer</span><button class="close-button" data-close="skills" aria-label="Close My Computer">×</button></div>
+        <div class="window-body content-body">
+          <p class="eyebrow">SYSTEM PROPERTIES</p><h2 id="skills-title">My <span>toolbox.</span></h2>
+          <div class="skill-group"><h3>Development</h3><div class="skill-pills"><span>JavaScript</span><span>Java</span><span>C#</span><span>C++</span><span>Dart</span><span>PHP</span></div></div>
+          <div class="skill-group"><h3>Web & backend</h3><div class="skill-pills"><span>React.js</span><span>Node.js</span><span>Express.js</span><span>.NET Core</span><span>REST APIs</span></div></div>
+          <div class="skill-group"><h3>Data & cloud</h3><div class="skill-pills"><span>SQL Server</span><span>MongoDB</span><span>MySQL</span><span>Firebase</span><span>Microsoft Azure</span></div></div>
+          <div class="skill-group"><h3>Mobile</h3><div class="skill-pills"><span>Flutter</span><span>Android Studio</span><span>Gradle</span></div></div>
+        </div>
+      </section>
+
+      <section class="window hidden" data-window-panel="experience" aria-labelledby="experience-title">
+        <div class="title-bar"><span class="title-bar-label"><span class="mini-icon">📄</span> Experience.doc</span><button class="close-button" data-close="experience" aria-label="Close Experience">×</button></div>
+        <div class="window-body content-body"><p class="eyebrow">WORK HISTORY</p><h2 id="experience-title">The <span>journey.</span></h2>
+          <div class="timeline"><div class="timeline-item"><span class="timeline-dot"></span><div><p class="date">MAR 2025 — SEP 2025</p><h3>Trainee Software Developer</h3><p class="muted">Sri Lanka Telecom PLC · Colombo</p><p>Contributed to internal systems and a fiber-laying monitoring solution using .NET Core, SQL Server, Azure AD and modern web technologies.</p></div></div>
+          <div class="timeline-item"><span class="timeline-dot"></span><div><p class="date">2024 — 2026</p><h3>B.Sc. (Hons) Software Engineering</h3><p class="muted">University of Bedfordshire, United Kingdom</p><p>Graduated with Second-Class Upper Honours.</p></div></div>
+          <div class="timeline-item"><span class="timeline-dot"></span><div><p class="date">SEP 2025 — PRESENT</p><h3>Website & Digital Experience</h3><p class="muted">PMI APAC Agile Regional Hub · Volunteer</p><p>Supporting digital experiences and web presence for the regional agile community.</p></div></div></div>
+        </div>
+      </section>
+
+      <section class="window hidden contact-window" data-window-panel="contact" aria-labelledby="contact-title">
+        <div class="title-bar"><span class="title-bar-label"><span class="mini-icon">✉️</span> Contact Me</span><button class="close-button" data-close="contact" aria-label="Close Contact Me">×</button></div>
+        <div class="window-body content-body"><p class="eyebrow">SEND_MESSAGE.EXE</p><h2 id="contact-title">Let’s make something <span>useful.</span></h2><p>Have an idea, an opportunity, or just want to say hello? My inbox is open.</p>
+          <div class="contact-links"><a href="mailto:nipun0425@gmail.com"><span>✉</span><div><strong>Email</strong><small>nipun0425@gmail.com</small></div></a><a href="https://github.com/nk405" target="_blank" rel="noreferrer"><span>◉</span><div><strong>GitHub</strong><small>github.com/nk405</small></div></a><a href="https://linkedin.com/in/nipun-kaushalya" target="_blank" rel="noreferrer"><span>in</span><div><strong>LinkedIn</strong><small>linkedin.com/in/nipun-kaushalya</small></div></a></div>
+        </div>
+      </section>
+
+      <footer class="taskbar"><button class="start-button"><span class="windows-flag">▣</span> Start</button><div class="taskbar-divider"></div><button class="task-item active-task" data-window="home">🌐 Welcome.exe</button><div class="system-tray"><span>🔊</span><time id="clock">12:00 PM</time></div></footer>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
