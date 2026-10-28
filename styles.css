@@ -6,14 +6,28 @@ button, a { font:inherit; }
 .desktop-grid { position:absolute; top:32px; left:32px; width:120px; height:620px; z-index:1; }
 .desktop-grid .desktop-icon { position:absolute; left:0; width:120px; }
 .desktop-grid .desktop-icon:nth-child(1) { top:0; }
-.desktop-grid .desktop-icon:nth-child(2) { top:86px; }
-.desktop-grid .desktop-icon:nth-child(3) { top:172px; }
-.desktop-grid .desktop-icon:nth-child(4) { top:258px; }
-.desktop-grid .desktop-icon:nth-child(5) { top:344px; }
-.desktop-grid .desktop-icon:nth-child(6) { top:430px; }
-.desktop-grid .desktop-icon:nth-child(7) { top:516px; }
+.desktop-grid .desktop-icon:nth-child(2) { top:76px; }
+.desktop-grid .desktop-icon:nth-child(3) { top:152px; }
+.desktop-grid .desktop-icon:nth-child(4) { top:228px; }
+.desktop-grid .desktop-icon:nth-child(5) { top:304px; }
+.desktop-grid .desktop-icon:nth-child(6) { top:380px; }
+.desktop-grid .desktop-icon:nth-child(7) { top:456px; }
+.desktop-grid .desktop-icon:nth-child(8) { top:532px; }
 .desktop-icon { border:0; background:transparent; color:#fff; cursor:grab; display:grid; justify-items:center; gap:5px; font-size:12px; text-shadow:1px 1px #13424a; padding:0 4px; touch-action:none; user-select:none; }.desktop-icon.dragging { cursor:grabbing; }
 .desktop-icon:hover { background:rgba(255,255,255,.16); outline:1px dotted #fff; }
+.desktop-icon .icon-clock { background-image:url("assets/icons/clock.png"); background-position:center; background-repeat:no-repeat; background-size:contain; }
+.clock-widget { position:absolute; z-index:4; top:32px; right:32px; width:220px; border:2px solid #fff; outline:1px solid #12122b; background:#d3d0db; box-shadow:4px 4px 0 rgba(20,28,47,.3); }
+.clock-widget.hidden { display:none; }
+.clock-widget-titlebar { height:26px; padding:3px 4px 3px 6px; color:#fff; background:linear-gradient(90deg,var(--blue),#7775ab); display:flex; align-items:center; justify-content:space-between; font-size:12px; font-weight:600; cursor:grab; touch-action:none; user-select:none; }
+.clock-widget-titlebar.dragging { cursor:grabbing; }
+.clock-widget-titlebar > span { display:flex; align-items:center; gap:5px; }
+.clock-widget-titlebar .icon-clock { width:15px; height:15px; flex-basis:15px; background:#e9e9ee; border:1px solid #302c4d; box-shadow:inset 2px 2px #fff, inset -2px -2px #777; border-radius:50%; position:relative; }
+.clock-widget-titlebar .icon-clock::before { content:""; position:absolute; left:6px; top:2px; width:1px; height:5px; background:#302c4d; box-shadow:2px 4px #302c4d; transform:rotate(25deg); transform-origin:bottom; }
+.clock-widget-close { width:18px; height:18px; padding:0; color:var(--ink); background:#e9e9ee; border:1px solid #fff; box-shadow:inset -1px -1px #777, inset 1px 1px #fff; font:700 14px/14px Arial,sans-serif; cursor:pointer; }
+.clock-widget-close:hover { background:var(--pink); }
+.clock-widget-body { padding:14px 12px 12px; background:#d3d0db; text-align:center; }
+.clock-widget-time { display:block; padding:8px 5px 6px; color:#172d32; background:#b8c5a5; border:2px solid #777; box-shadow:inset 2px 2px #596450, inset -2px -2px #f0f3db; font:700 27px/1 'Courier New',monospace; letter-spacing:-1px; text-shadow:1px 1px #dce5c5; }
+.clock-widget-date { margin-top:10px; color:#3e3b4e; font-size:10px; line-height:1.35; }
 .icon-art { font-size:31px; line-height:1; filter:drop-shadow(2px 2px #184850); }
 .pixel-icon { display:inline-block; position:relative; width:28px; height:28px; flex:0 0 28px; image-rendering:pixelated; filter:drop-shadow(2px 2px #103d45); }
 .mini-icon { width:16px; height:16px; flex-basis:16px; filter:none; }.start-menu-item .pixel-icon { filter:none; }.system-tray .pixel-icon { width:15px; height:15px; flex-basis:15px; filter:none; }

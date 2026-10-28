@@ -3,6 +3,9 @@ const panels = [...document.querySelectorAll('[data-window-panel]')];
 const taskItems = document.querySelector('.task-items');
 const startMenu = document.querySelector('.start-menu');
 const startButton = document.querySelector('.start-button');
+const clockWidget = document.querySelector('.clock-widget');
+const desktopClock = document.querySelector('#desktop-clock');
+const desktopDate = document.querySelector('#desktop-date');
 let highestZIndex = 2;
 let activeWindow = 'home';
 const savedPositions = new WeakMap();
@@ -121,6 +124,17 @@ function toggleMaximize(panel) {
 }
 
 desktop.addEventListener('click', (event) => {
+  const widgetTrigger = event.target.closest('[data-widget]');
+  if (widgetTrigger) {
+    if (widgetTrigger.dataset.dragged === 'true') {
+      delete widgetTrigger.dataset.dragged;
+    } else if (event.detail === 2 || window.matchMedia('(max-width: 760px)').matches) {
+      clockWidget.classList.remove('hidden');
+      clockWidget.style.zIndex = ++highestZIndex;
+    }
+    return;
+  }
+
   const trigger = event.target.closest('[data-window]');
   if (trigger) {
     if (trigger.classList.contains('desktop-icon')) {
@@ -150,7 +164,7 @@ desktop.addEventListener('click', (event) => {
   }
 });
 
-document.querySelectorAll('.desktop-icon[data-window]').forEach((icon) => {
+document.querySelectorAll('.desktop-icon[data-window], .desktop-icon[data-widget]').forEach((icon) => {
   icon.addEventListener('pointerdown', (event) => {
     if (window.matchMedia('(max-width: 760px)').matches) return;
 
@@ -275,6 +289,42 @@ document.querySelectorAll('.title-bar').forEach((titleBar) => {
   });
 });
 
+const clockTitleBar = document.querySelector('.clock-widget-titlebar');
+clockTitleBar.addEventListener('pointerdown', (event) => {
+  if (event.target.closest('button')) return;
+
+  const widgetRect = clockWidget.getBoundingClientRect();
+  const desktopRect = desktop.getBoundingClientRect();
+  const offsetX = event.clientX - widgetRect.left;
+  const offsetY = event.clientY - widgetRect.top;
+  const maxX = Math.max(0, desktopRect.width - widgetRect.width);
+  const maxY = Math.max(0, desktopRect.height - widgetRect.height - 36);
+
+  clockWidget.style.left = `${Math.max(0, Math.min(widgetRect.left - desktopRect.left, maxX))}px`;
+  clockWidget.style.top = `${Math.max(0, Math.min(widgetRect.top - desktopRect.top, maxY))}px`;
+  clockWidget.style.right = 'auto';
+  clockWidget.style.zIndex = ++highestZIndex;
+  clockTitleBar.setPointerCapture(event.pointerId);
+  clockTitleBar.classList.add('dragging');
+
+  const moveWidget = (moveEvent) => {
+    const x = moveEvent.clientX - desktopRect.left - offsetX;
+    const y = moveEvent.clientY - desktopRect.top - offsetY;
+    clockWidget.style.left = `${Math.max(0, Math.min(x, maxX))}px`;
+    clockWidget.style.top = `${Math.max(0, Math.min(y, maxY))}px`;
+  };
+  const stopDragging = () => {
+    clockTitleBar.removeEventListener('pointermove', moveWidget);
+    clockTitleBar.removeEventListener('pointerup', stopDragging);
+    clockTitleBar.removeEventListener('pointercancel', stopDragging);
+    clockTitleBar.classList.remove('dragging');
+  };
+
+  clockTitleBar.addEventListener('pointermove', moveWidget);
+  clockTitleBar.addEventListener('pointerup', stopDragging);
+  clockTitleBar.addEventListener('pointercancel', stopDragging);
+});
+
 panels.forEach((panel) => {
   panel.addEventListener('pointerdown', () => {
     if (!panel.classList.contains('hidden') && !panel.classList.contains('minimized')) focusWindow(panel);
@@ -282,10 +332,25 @@ panels.forEach((panel) => {
 });
 
 function updateClock() {
-  document.querySelector('#clock').textContent = new Intl.DateTimeFormat([], {
+  const now = new Date();
+  const time = new Intl.DateTimeFormat([], {
     hour: 'numeric',
     minute: '2-digit',
-  }).format(new Date());
+  }).format(now);
+  const date = new Intl.DateTimeFormat([], {
+    weekday: 'long',
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  }).format(now);
+  document.querySelector('#clock').textContent = time;
+  desktopClock.textContent = time;
+  desktopClock.dateTime = now.toISOString();
+  desktopDate.textContent = date;
 }
 updateClock();
 setInterval(updateClock, 30000);
+
+document.querySelector('.clock-widget-close').addEventListener('click', () => {
+  clockWidget.classList.add('hidden');
+});
