@@ -38,6 +38,10 @@
           <span class="icon-art pixel-icon icon-clock" aria-hidden="true"></span>
           <span>Clock</span>
         </button>
+        <button class="desktop-icon" data-window="minesweeper">
+          <span class="icon-art pixel-icon icon-minesweeper" aria-hidden="true"></span>
+          <span>Minesweeper</span>
+        </button>
         <a class="desktop-icon" href="CV_Nipun_Kaushalya.pdf" download>
           <span class="icon-art pixel-icon icon-download" aria-hidden="true"></span>
           <span>Download CV</span>
@@ -103,6 +107,20 @@
         </div>
       </section>
 
+      <section class="window hidden minesweeper-window" data-window-panel="minesweeper" aria-labelledby="minesweeper-title">
+        <div class="title-bar"><span class="title-bar-label"><span class="mini-icon pixel-icon icon-minesweeper"></span> Minesweeper</span><div class="window-controls"><button data-window-action="minimize" aria-label="Minimize Minesweeper">_</button><button data-window-action="maximize" aria-label="Maximize Minesweeper">□</button><button data-window-action="close" aria-label="Close Minesweeper">×</button></div></div>
+        <div class="window-body minesweeper-body">
+          <nav class="minesweeper-menu" aria-label="Minesweeper menu"><button type="button">Game</button><button type="button">Help</button></nav>
+          <div class="minesweeper-status" aria-live="polite">
+            <span class="mine-counter" data-minesweeper-mines>010</span>
+            <button class="mine-face" type="button" data-minesweeper-reset aria-label="Start a new game">☺</button>
+            <span class="mine-counter" data-minesweeper-time>000</span>
+          </div>
+          <div class="minesweeper-board" data-minesweeper-board role="grid" aria-label="Minesweeper board"></div>
+          <p class="minesweeper-help">Left-click to reveal · Right-click to flag</p>
+        </div>
+      </section>
+
       <section class="window hidden" data-window-panel="skills" aria-labelledby="skills-title">
         <div class="title-bar"><span class="title-bar-label"><span class="mini-icon pixel-icon icon-computer"></span> My Skills</span><div class="window-controls"><button data-window-action="minimize" aria-label="Minimize My Skills">_</button><button data-window-action="maximize" aria-label="Maximize My Skills">□</button><button data-window-action="close" aria-label="Close My Skills">×</button></div></div>
         <div class="window-body content-body">
@@ -136,6 +154,7 @@
           <button class="start-menu-item" data-window="home"><span class="pixel-icon icon-globe"></span>Welcome</button>
           <button class="start-menu-item" data-window="about"><span class="pixel-icon icon-user"></span>About Me</button>
           <button class="start-menu-item" data-window="projects"><span class="pixel-icon icon-folder"></span>Projects</button>
+          <button class="start-menu-item" data-window="minesweeper"><span class="pixel-icon icon-minesweeper"></span>Minesweeper</button>
           <button class="start-menu-item" data-window="skills"><span class="pixel-icon icon-computer"></span>My Skills</button>
           <button class="start-menu-item" data-window="experience"><span class="pixel-icon icon-document"></span>Experience</button>
           <button class="start-menu-item" data-window="contact"><span class="pixel-icon icon-mail"></span>Contact Me</button>

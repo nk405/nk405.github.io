@@ -6,13 +6,14 @@ button, a { font:inherit; }
 .desktop-grid { position:absolute; top:32px; left:32px; width:120px; height:620px; z-index:1; }
 .desktop-grid .desktop-icon { position:absolute; left:0; width:120px; }
 .desktop-grid .desktop-icon:nth-child(1) { top:0; }
-.desktop-grid .desktop-icon:nth-child(2) { top:76px; }
-.desktop-grid .desktop-icon:nth-child(3) { top:152px; }
-.desktop-grid .desktop-icon:nth-child(4) { top:228px; }
-.desktop-grid .desktop-icon:nth-child(5) { top:304px; }
-.desktop-grid .desktop-icon:nth-child(6) { top:380px; }
-.desktop-grid .desktop-icon:nth-child(7) { top:456px; }
-.desktop-grid .desktop-icon:nth-child(8) { top:532px; }
+.desktop-grid .desktop-icon:nth-child(2) { top:68px; }
+.desktop-grid .desktop-icon:nth-child(3) { top:136px; }
+.desktop-grid .desktop-icon:nth-child(4) { top:204px; }
+.desktop-grid .desktop-icon:nth-child(5) { top:272px; }
+.desktop-grid .desktop-icon:nth-child(6) { top:340px; }
+.desktop-grid .desktop-icon:nth-child(7) { top:408px; }
+.desktop-grid .desktop-icon:nth-child(8) { top:476px; }
+.desktop-grid .desktop-icon:nth-child(9) { top:544px; }
 .desktop-icon { border:0; background:transparent; color:#fff; cursor:grab; display:grid; justify-items:center; gap:5px; font-size:12px; text-shadow:1px 1px #13424a; padding:0 4px; touch-action:none; user-select:none; }.desktop-icon.dragging { cursor:grabbing; }
 .desktop-icon:hover { background:rgba(255,255,255,.16); outline:1px dotted #fff; }
 .desktop-icon .icon-clock { background-image:url("assets/icons/clock.png"); background-position:center; background-repeat:no-repeat; background-size:contain; }
@@ -58,9 +59,28 @@ button, a { font:inherit; }
 .skill-group { border-top:1px solid var(--line); padding:13px 0; display:grid; grid-template-columns:140px 1fr; gap:12px; }.skill-group h3 { margin:0; font-size:13px; }.skill-pills span { font-size:11px; padding:5px 8px; background:#eee9e1; }
 .timeline { border-left:1px solid #c9c0ca; padding-left:25px; }.timeline-item { position:relative; padding-bottom:21px; }.timeline-dot { position:absolute; left:-31px; top:3px; width:11px; height:11px; border:2px solid var(--paper); background:var(--pink); outline:1px solid #77718d; border-radius:50%; }.timeline-item h3 { margin:2px 0 4px; font-size:16px; }.timeline-item p { margin:5px 0; font-size:13px; line-height:1.5; }.date { color:#77718d; font:11px 'MS Sans Serif',Tahoma,sans-serif; }.muted { color:#777; }
 .contact-window .content-body { min-height:380px; }.contact-links { display:grid; gap:9px; margin-top:24px; }.contact-links a { display:flex; align-items:center; gap:14px; padding:12px; color:var(--ink); text-decoration:none; border:1px solid var(--line); background:#eee9e1; }.contact-links a:hover { background:#fbd1da; }.contact-links>a>span { width:29px; text-align:center; font:600 16px 'MS Sans Serif',Tahoma,sans-serif; color:var(--blue); }.contact-links strong,.contact-links small { display:block; }.contact-links small { color:#777; font:11px 'MS Sans Serif',Tahoma,sans-serif; margin-top:2px; }
+.minesweeper-window { width:min(430px, calc(100vw - 245px)); background:#c0c0c0; }
+.minesweeper-body { padding:0 8px 8px; background:#c0c0c0; }
+.minesweeper-menu { height:25px; display:flex; align-items:center; gap:2px; margin:0 -8px 7px; padding-left:3px; border-bottom:1px solid #808080; font-size:12px; }
+.minesweeper-menu button { padding:2px 8px; border:0; background:transparent; color:#000; cursor:pointer; }
+.minesweeper-menu button:hover { background:#000080; color:#fff; }
+.minesweeper-status { display:flex; align-items:center; justify-content:space-between; height:58px; padding:6px; border:3px inset #fff; background:#c0c0c0; }
+.mine-counter { min-width:65px; padding:2px 3px; color:#ff0000; background:#000; text-align:right; font:26px/1 'Courier New',monospace; letter-spacing:-2px; }
+.mine-face { width:34px; height:34px; padding:3px; color:transparent; background:#c0c0c0 url("assets/icons/smiley-face.png") center/32px 32px no-repeat; border:3px outset #fff; font-size:0; cursor:pointer; }
+.mine-face.face-lost { background-image:url("assets/icons/smiley-face-lost.png"); }
+.mine-face.face-won { background-image:url("assets/icons/smiley-face-won.png"); }
+.mine-face:active { border-style:inset; }
+.minesweeper-board { display:grid; grid-template-columns:repeat(9, 32px); grid-auto-rows:32px; width:294px; height:294px; margin:8px auto 7px; border:3px inset #fff; background:#c0c0c0; }
+.mine-cell { display:flex; align-items:center; justify-content:center; width:32px; height:32px; min-width:0; padding:0; color:#000; background:#c0c0c0; border:2px outset #fff; font:700 18px/28px 'Arial Black',Arial,sans-serif; cursor:pointer; }
+.mine-cell:hover:not(.revealed) { background:#c0c0c0; }
+.mine-cell.revealed { border:1px solid #808080; background:#c0c0c0; cursor:default; }
+.mine-cell.flagged { color:#c83e58; }
+.mine-cell.mine { background:#f5b5c3; }
+.mine-cell[data-number="1"] { color:#315d9b; }.mine-cell[data-number="2"] { color:#428052; }.mine-cell[data-number="3"] { color:#b34545; }.mine-cell[data-number="4"] { color:#5c4a91; }.mine-cell[data-number="5"] { color:#8d3e40; }
+.minesweeper-help { margin:0; color:#404040; text-align:center; font-size:10px; }
 .start-menu { position:fixed; z-index:20; bottom:36px; left:5px; width:245px; min-height:300px; display:flex; background:#d3d0db; border:2px solid #fff; outline:1px solid #33334d; box-shadow:4px 4px 0 rgba(20,28,47,.3); }.start-menu.hidden { display:none; }.start-menu-brand { width:43px; padding:9px 5px; color:#fff; background:linear-gradient(180deg,#403f83,#7775ab); writing-mode:vertical-rl; transform:rotate(180deg); font:700 15px 'MS Sans Serif',Tahoma,sans-serif; letter-spacing:.05em; }.start-menu-brand b { font-size:23px; }.start-menu-items { flex:1; padding:6px; }.start-menu-item { width:100%; min-height:38px; display:flex; align-items:center; gap:12px; padding:6px 9px; color:var(--ink); background:transparent; border:0; text-align:left; text-decoration:none; cursor:pointer; font-size:12px; }.start-menu-item span { width:25px; text-align:center; font-size:22px; }.start-menu-item:hover { color:#fff; background:var(--blue); }
 .taskbar { position:fixed; z-index:10; bottom:0; left:0; right:0; height:36px; border-top:2px solid #fff; background:#c9c6d1; box-shadow:0 -1px 0 #75717d; display:flex; align-items:center; padding:3px 5px; gap:6px; }.start-button,.task-item { height:28px; border:1px solid #55536d; background:#dcd9e2; box-shadow:inset -1px -1px #777, inset 1px 1px #fff; padding:3px 10px; cursor:pointer; font-size:12px; font-weight:600; }.start-button:active,.task-item:active { box-shadow:inset 1px 1px #777; }.windows-flag { color:var(--blue); font-size:17px; }.taskbar-divider { height:25px; border-left:1px solid #777; border-right:1px solid #fff; }.task-items { display:flex; gap:6px; min-width:0; }.task-item { font-family:'MS Sans Serif',Tahoma,sans-serif; font-weight:400; min-width:155px; text-align:left; }.active-task { background:#aaa6b5; box-shadow:inset 1px 1px #777; }.system-tray { margin-left:auto; border:1px solid #aaa5b0; box-shadow:inset 1px 1px #888; height:27px; padding:4px 9px; display:flex; gap:10px; align-items:center; font:11px 'MS Sans Serif',Tahoma,sans-serif; }
-@media (max-width:760px) { .desktop { padding:12px 12px 52px; min-height:100vh; }.desktop-grid { position:relative; top:auto; left:auto; width:auto; height:auto; display:grid; grid-template-columns:repeat(3,70px); gap:18px 15px; padding:3px 0 25px; }.desktop-grid .desktop-icon { position:static; width:70px; }.window,.hero-window,.wide-window { width:calc(100vw - 24px) !important; max-height:calc(100vh - 52px); margin:0 !important; position:fixed !important; left:50% !important; top:50% !important; transform:translate(-50%, -50%); overflow:hidden; }.hero-window { min-height:0; }.hero-body { min-height:0; padding:40px 25px; }.window-body { padding:25px 22px; overflow:auto; max-height:calc(100vh - 125px); }.project-list { grid-template-columns:1fr; }.info-grid { grid-template-columns:1fr; }.skill-group { grid-template-columns:1fr; gap:8px; }.status-bar { font-size:9px; }.task-item { min-width:0; flex:1; overflow:hidden; white-space:nowrap; }.system-tray span { display:none; } }
+@media (max-width:760px) { .desktop { padding:12px 12px 52px; min-height:100vh; }.desktop-grid { position:relative; top:auto; left:auto; width:auto; height:auto; display:grid; grid-template-columns:repeat(3,70px); gap:18px 15px; padding:3px 0 25px; }.desktop-grid .desktop-icon { position:static; width:70px; }.window,.hero-window,.wide-window,.minesweeper-window { width:calc(100vw - 24px) !important; max-height:calc(100vh - 52px); margin:0 !important; position:fixed !important; left:50% !important; top:50% !important; transform:translate(-50%, -50%); overflow:hidden; }.hero-window { min-height:0; }.hero-body { min-height:0; padding:40px 25px; }.window-body { padding:25px 22px; overflow:auto; max-height:calc(100vh - 125px); }.project-list { grid-template-columns:1fr; }.info-grid { grid-template-columns:1fr; }.skill-group { grid-template-columns:1fr; gap:8px; }.status-bar { font-size:9px; }.task-item { min-width:0; flex:1; overflow:hidden; white-space:nowrap; }.system-tray span { display:none; }.minesweeper-body { padding:20px 16px 16px; }.minesweeper-heading { align-items:flex-start; }.minesweeper-heading .win-button { padding:7px 8px; }.minesweeper-board { width:min(100%, 320px); } }
 
 /* Custom Windows 98 icon set */
 .pixel-icon { background-position:center; background-repeat:no-repeat; background-size:contain; }
@@ -70,6 +90,7 @@ button, a { font:inherit; }
 .icon-computer { background-image:url("assets/icons/computer.png"); }
 .icon-document { background-image:url("assets/icons/experience.png"); border:0; box-shadow:none; }
 .icon-mail { background-image:url("assets/icons/contact.png"); border:0; box-shadow:none; }
+.icon-minesweeper { background-image:url("assets/icons/Minesweeper.png"); }
 .icon-download { background-image:url("assets/icons/download.png"); width:28px; height:28px; margin:0; border:0; box-shadow:none; }
 .icon-speaker { background-image:url("assets/icons/speaker.png"); width:15px; height:15px; margin:0; border:0; }
 .windows-flag { background-image:url("assets/icons/windows.png"); background-position:center; background-repeat:no-repeat; background-size:contain; border:0; }

@@ -354,3 +354,160 @@ setInterval(updateClock, 30000);
 document.querySelector('.clock-widget-close').addEventListener('click', () => {
   clockWidget.classList.add('hidden');
 });
+
+const minesweeperBoard = document.querySelector('[data-minesweeper-board]');
+const minesweeperReset = document.querySelector('[data-minesweeper-reset]');
+const minesweeperMineCount = document.querySelector('[data-minesweeper-mines]');
+const minesweeperTime = document.querySelector('[data-minesweeper-time]');
+const mineRows = 9;
+const mineColumns = 9;
+const mineTotal = 10;
+let mineCells = [];
+let mineGameOver = false;
+let mineStarted = false;
+let mineElapsed = 0;
+let mineTimer;
+
+function formatMineTime(value) {
+  return String(Math.min(999, value)).padStart(3, '0');
+}
+
+function formatMineCount(value) {
+  return String(Math.max(0, value)).padStart(3, '0');
+}
+
+function getMineNeighbors(index) {
+  const row = Math.floor(index / mineColumns);
+  const column = index % mineColumns;
+  const neighbors = [];
+  for (let rowOffset = -1; rowOffset <= 1; rowOffset += 1) {
+    for (let columnOffset = -1; columnOffset <= 1; columnOffset += 1) {
+      if (!rowOffset && !columnOffset) continue;
+      const neighborRow = row + rowOffset;
+      const neighborColumn = column + columnOffset;
+      if (neighborRow >= 0 && neighborRow < mineRows && neighborColumn >= 0 && neighborColumn < mineColumns) {
+        neighbors.push(neighborRow * mineColumns + neighborColumn);
+      }
+    }
+  }
+  return neighbors;
+}
+
+function finishMinesweeper(message) {
+  mineGameOver = true;
+  clearInterval(mineTimer);
+  const won = message.startsWith('You cleared');
+  minesweeperReset.classList.toggle('face-lost', !won);
+  minesweeperReset.classList.toggle('face-won', won);
+  if (won) {
+    mineCells.forEach((cell) => {
+      if (cell.mine && !cell.flagged) {
+        cell.flagged = true;
+        cell.button.classList.add('flagged');
+        cell.button.textContent = '⚑';
+      }
+    });
+    minesweeperMineCount.textContent = formatMineCount(0);
+  }
+  minesweeperBoard.setAttribute('aria-label', `Minesweeper board: ${message}`);
+  mineCells.forEach((cell) => {
+    if (cell.mine) {
+      cell.button.classList.add('revealed', 'mine');
+      cell.button.textContent = '✹';
+    }
+  });
+  minesweeperBoard.closest('.window').querySelector('.minesweeper-help').textContent = message;
+}
+
+function revealMineCell(index) {
+  const cell = mineCells[index];
+  if (!cell || mineGameOver || cell.revealed || cell.flagged) return;
+
+  if (!mineStarted) {
+    mineStarted = true;
+    mineTimer = setInterval(() => {
+      mineElapsed = Math.min(999, mineElapsed + 1);
+      minesweeperTime.textContent = formatMineTime(mineElapsed);
+      if (mineElapsed === 999) clearInterval(mineTimer);
+    }, 1000);
+  }
+
+  cell.revealed = true;
+  cell.button.classList.add('revealed');
+  cell.button.setAttribute('aria-label', cell.mine ? 'Mine' : `${cell.neighborMines} adjacent mines`);
+  if (cell.mine) {
+    cell.button.textContent = '✹';
+    finishMinesweeper('Boom! Try a new game.');
+    return;
+  }
+
+  if (cell.neighborMines > 0) {
+    cell.button.dataset.number = cell.neighborMines;
+    cell.button.textContent = cell.neighborMines;
+  } else {
+    getMineNeighbors(index).forEach(revealMineCell);
+  }
+
+  if (mineCells.every((mineCell) => mineCell.mine || mineCell.revealed)) {
+    finishMinesweeper('You cleared the field!');
+  }
+}
+
+function toggleMineFlag(index) {
+  const cell = mineCells[index];
+  if (!cell || mineGameOver || cell.revealed) return;
+  const flags = mineCells.filter((mineCell) => mineCell.flagged).length;
+  if (!cell.flagged && flags >= mineTotal) return;
+  cell.flagged = !cell.flagged;
+  cell.button.classList.toggle('flagged', cell.flagged);
+  cell.button.textContent = cell.flagged ? '⚑' : '';
+  cell.button.setAttribute('aria-label', cell.flagged ? 'Flagged square' : 'Covered square');
+  const updatedFlags = mineCells.filter((mineCell) => mineCell.flagged).length;
+  minesweeperMineCount.textContent = formatMineCount(mineTotal - updatedFlags);
+}
+
+function createMinesweeper() {
+  clearInterval(mineTimer);
+  mineGameOver = false;
+  mineStarted = false;
+  mineElapsed = 0;
+  minesweeperTime.textContent = formatMineTime(mineElapsed);
+  minesweeperMineCount.textContent = formatMineCount(mineTotal);
+  minesweeperReset.classList.remove('face-lost', 'face-won');
+  minesweeperBoard.setAttribute('aria-label', 'Minesweeper board');
+  minesweeperBoard.closest('.window').querySelector('.minesweeper-help').textContent = 'Left-click to reveal. Right-click to flag a square.';
+  minesweeperBoard.replaceChildren();
+  const mineIndexes = new Set();
+  while (mineIndexes.size < mineTotal) mineIndexes.add(Math.floor(Math.random() * mineRows * mineColumns));
+  mineCells = Array.from({ length: mineRows * mineColumns }, (_, index) => ({
+    mine: mineIndexes.has(index),
+    neighborMines: 0,
+    revealed: false,
+    flagged: false,
+    button: null,
+  }));
+  mineCells.forEach((cell, index) => {
+    cell.neighborMines = getMineNeighbors(index).filter((neighbor) => mineCells[neighbor].mine).length;
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'mine-cell';
+    button.dataset.mineIndex = index;
+    button.setAttribute('role', 'gridcell');
+    button.setAttribute('aria-label', 'Covered square');
+    cell.button = button;
+    minesweeperBoard.append(button);
+  });
+}
+
+minesweeperBoard.addEventListener('click', (event) => {
+  const cell = event.target.closest('[data-mine-index]');
+  if (cell) revealMineCell(Number(cell.dataset.mineIndex));
+});
+minesweeperBoard.addEventListener('contextmenu', (event) => {
+  const cell = event.target.closest('[data-mine-index]');
+  if (!cell) return;
+  event.preventDefault();
+  toggleMineFlag(Number(cell.dataset.mineIndex));
+});
+minesweeperReset.addEventListener('click', createMinesweeper);
+createMinesweeper();
