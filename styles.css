@@ -480,13 +480,13 @@ a {
   width: min(690px, calc(100vw - 245px));
   min-height: 475px;
 }
-.word-window {
+.notepad-window {
   background: #c0c0c0;
 }
-.word-window .title-bar {
+.notepad-window .title-bar {
   background: linear-gradient(90deg, #000080, #1084d7);
 }
-.word-menu {
+.notepad-menu {
   height: 25px;
   display: flex;
   align-items: center;
@@ -500,143 +500,67 @@ a {
     Tahoma,
     sans-serif;
 }
-.word-menu span {
+.notepad-menu span {
   padding: 3px 8px;
   cursor: default;
 }
-.word-menu span:hover {
+.notepad-menu span:hover {
   color: #fff;
   background: #000080;
 }
-.word-toolbar {
-  min-height: 34px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  padding: 3px 6px;
-  color: #000;
-  background: #c0c0c0;
-  border-bottom: 1px solid #808080;
-}
-.word-tool-group {
-  display: flex;
-  gap: 2px;
-  padding-right: 5px;
-  border-right: 1px solid #808080;
-}
-.word-tool-group:last-child {
-  border: 0;
-}
-.word-toolbar button {
-  width: 25px;
-  height: 24px;
-  padding: 0;
-  color: #000;
-  background: #c0c0c0;
-  border: 2px outset #fff;
-  font:
-    14px Arial,
-    sans-serif;
-  cursor: pointer;
-}
-.word-toolbar button:active {
-  border-style: inset;
-}
-.word-format-tools select {
-  height: 23px;
-  color: #000;
-  background: #fff;
-  border: 1px solid #808080;
-  font:
-    11px "MS Sans Serif",
-    Tahoma,
-    sans-serif;
-}
-.word-format-tools select:first-child {
-  width: 126px;
-}
-.word-format-tools select:nth-child(2) {
-  width: 37px;
-}
-.word-ruler {
-  height: 21px;
-  padding: 1px 14px;
-  display: flex;
-  justify-content: space-between;
-  color: #404040;
-  background: #e5e5e5;
-  border-bottom: 1px solid #808080;
-  font:
-    9px "MS Sans Serif",
-    serif;
-}
-.word-ruler span {
-  height: 9px;
-  padding-left: 2px;
-  border-left: 1px solid #808080;
-}
-.word-body {
+.notepad-body {
   min-height: 390px;
-  padding: 18px 34px 25px;
+  padding: 0;
   overflow: auto;
-  background: #808080;
+  background: #fff;
 }
-.word-page {
-  min-height: 340px;
-  padding: 34px 50px;
+.notepad-page {
+  min-height: 390px;
+  padding: 28px 34px;
   color: #000;
   background: #fff;
-  box-shadow: 2px 2px 3px #333;
-  font-family: "MS Sans Serif", Times, serif;
-}
-.word-page .word-date {
-  margin: 0 0 25px;
-  text-align: right;
-  font-size: 12px;
-}
-.word-page .eyebrow {
-  color: #000080;
-  margin-bottom: 13px;
   font:
-    700 11px "MS Sans Serif",
-    Times,
-    serif;
+    14px/1.45 "Courier New",
+    monospace;
+}
+.notepad-page .eyebrow {
+  color: #000;
+  margin-bottom: 16px;
+  font:
+    14px "Courier New",
+    monospace;
   letter-spacing: 0.12em;
 }
-.word-page h1 {
+.notepad-page h1 {
   margin: 0;
   font:
-    700 clamp(38px, 6vw, 65px)/0.95 "MS Sans Serif",
-    Times,
-    serif;
-  letter-spacing: -0.04em;
+    700 30px/1.2 "Courier New",
+    monospace;
 }
-.word-page h1 span {
-  color: #000080;
+.notepad-page h1 span {
+  color: #000;
 }
-.word-page .hero-role {
+.notepad-page .hero-role {
   margin: 17px 0 11px;
   font:
-    700 15px "MS Sans Serif",
-    Times,
-    serif;
+    700 14px "Courier New",
+    monospace;
 }
-.word-page .hero-role b {
-  color: #000080;
+.notepad-page .hero-role b {
+  color: #000;
 }
-.word-page .hero-copy {
+.notepad-page .hero-copy {
   max-width: 440px;
   margin: 0;
-  color: #222;
+  color: #000;
   font:
-    16px/1.45 "MS Sans Serif",
-    Times,
-    serif;
+    14px/1.45 "Courier New",
+    monospace;
 }
-.word-page .hero-actions {
+.notepad-page .hero-actions {
   margin-top: 23px;
 }
-.word-page .win-button {
+.notepad-page .win-button {
   color: #000;
   background: #c0c0c0;
   border: 2px outset #fff;
@@ -646,11 +570,11 @@ a {
     Tahoma,
     sans-serif;
 }
-.word-page .win-button.primary {
+.notepad-page .win-button.primary {
   color: #fff;
   background: #000080;
 }
-.word-status-bar {
+.notepad-status-bar {
   display: flex;
   gap: 0;
   min-height: 22px;
@@ -663,7 +587,7 @@ a {
     Tahoma,
     sans-serif;
 }
-.word-status-bar span {
+.notepad-status-bar span {
   padding: 2px 9px;
   border-right: 1px solid #808080;
 }
@@ -1348,6 +1272,11 @@ h2 {
   border: 0;
   box-shadow: none;
 }
+.icon-notepad {
+  background-image: url("assets/icons/notepad.png");
+  border: 0;
+  box-shadow: none;
+}
 .icon-user {
   background-image: url("assets/icons/about.png");
   border: 0;
@@ -1413,6 +1342,12 @@ h2 {
   height: 42px;
   flex-basis: 42px;
 }
+.desktop-icon .icon-notepad {
+  width: 42px;
+  height: 42px;
+  flex-basis: 42px;
+  /* background-size: 42px 42px; */
+}
 .desktop-icon .icon-download {
   width: 42px;
   height: 42px;
@@ -1426,6 +1361,7 @@ h2 {
 /* Custom PNGs are transparent; clear the legacy CSS icon layers. */
 .pixel-icon,
 .pixel-icon.icon-globe,
+.pixel-icon.icon-notepad,
 .pixel-icon.icon-user,
 .pixel-icon.icon-folder,
 .pixel-icon.icon-computer,
@@ -1440,24 +1376,18 @@ h2 {
 }
 
 @media (max-width: 760px) {
-  .word-menu {
+  .notepad-menu {
     overflow-x: auto;
     white-space: nowrap;
   }
-  .word-toolbar {
-    overflow-x: auto;
-  }
-  .word-body {
-    padding: 12px;
-  }
-  .word-page {
+  .notepad-page {
     padding: 25px 22px;
   }
-  .word-status-bar {
+  .notepad-status-bar {
     overflow: hidden;
     white-space: nowrap;
   }
-  .word-status-bar span {
+  .notepad-status-bar span {
     padding-left: 5px;
     padding-right: 5px;
   }

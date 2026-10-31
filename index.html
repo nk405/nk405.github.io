@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Nipun Kaushalya - Software Engineer" />
-    <title>Portfolio - Nipun Kaushalya(Work in Progress)</title>
+    <title>Portfolio(Work in Progress)</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
 
@@ -13,7 +13,7 @@
       <div class="desktop-grid" aria-label="Portfolio desktop">
         <button class="desktop-icon" data-window="home">
           <span
-            class="icon-art pixel-icon icon-globe"
+            class="icon-art pixel-icon icon-notepad"
             aria-hidden="true"></span>
           <span>Welcome</span>
         </button>
@@ -82,13 +82,13 @@
       </aside>
 
       <section
-        class="window hero-window word-window"
+        class="window hero-window notepad-window"
         data-window-panel="home"
         aria-labelledby="welcome-title">
         <div class="title-bar">
           <span class="title-bar-label"
-            ><span class="mini-icon pixel-icon icon-document"></span> Microsoft
-            Word - Welcome.doc</span
+            ><span class="mini-icon pixel-icon icon-notepad"></span> Welcome -
+            Notepad</span
           >
           <div class="window-controls">
             <button data-window-action="minimize" aria-label="Minimize Welcome">
@@ -102,47 +102,13 @@
             </button>
           </div>
         </div>
-        <nav class="word-menu" aria-label="Microsoft Word menu">
+        <nav class="notepad-menu" aria-label="Notepad menu">
           <span><u>F</u>ile</span><span><u>E</u>dit</span
-          ><span><u>V</u>iew</span><span><u>I</u>nsert</span
-          ><span>F<u>o</u>rmat</span><span><u>T</u>ools</span
-          ><span><u>T</u>able</span><span><u>W</u>indow</span
+          ><span>F<u>o</u>rmat</span><span><u>V</u>iew</span
           ><span><u>H</u>elp</span>
         </nav>
-        <div class="word-toolbar" aria-label="Formatting toolbar">
-          <span class="word-tool-group"
-            ><button type="button" aria-label="New document">▧</button>
-            <button type="button" aria-label="Open document">📂</button>
-            <button type="button" aria-label="Save document">▣</button>
-            <button type="button" aria-label="Print document">🖨</button></span
-          >
-          <span class="word-tool-group"
-            ><button type="button" aria-label="Cut">✂</button>
-            <button type="button" aria-label="Copy">▤</button>
-            <button type="button" aria-label="Paste">📋</button></span
-          >
-          <span class="word-tool-group"
-            ><button type="button" aria-label="Undo">↶</button>
-            <button type="button" aria-label="Redo">↷</button></span
-          >
-          <span class="word-tool-group word-format-tools"
-            ><select aria-label="Font">
-              <option>MS Sans Serif</option></select
-            ><select aria-label="Font size">
-              <option>12</option></select
-            ><button type="button" aria-label="Bold"><b>B</b></button
-            ><button type="button" aria-label="Italic"><i>I</i></button
-            ><button type="button" aria-label="Underline">
-              <u>U</u>
-            </button></span
-          >
-        </div>
-        <div class="word-ruler" aria-hidden="true">
-          <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span
-          ><span>5</span><span>6</span><span>7</span><span>8</span>
-        </div>
-        <div class="window-body hero-body word-body">
-          <article class="word-page">
+        <div class="window-body hero-body notepad-body">
+          <article class="notepad-page">
             <p class="eyebrow">WELCOME</p>
             <h1 id="welcome-title">Hi, I’m <span>Nipun.</span></h1>
             <p class="hero-role">
@@ -162,10 +128,9 @@
             </div>
           </article>
         </div>
-        <div class="word-status-bar">
-          <span>Page 1 of 1</span><span>Sec 1</span><span>1/1</span
-          ><span>At 1"</span><span>Ln 1</span><span>Col 1</span
-          ><span>English (U.K.)</span>
+        <div class="notepad-status-bar">
+          <span>Ln 1, Col 1</span><span>100%</span><span>Windows (CRLF)</span
+          ><span>UTF-8</span>
         </div>
       </section>
 
@@ -531,7 +496,7 @@
         <div class="start-menu-brand"><span>PORTFOLIO</span></div>
         <div class="start-menu-items">
           <button class="start-menu-item" data-window="home">
-            <span class="pixel-icon icon-globe"></span>Welcome
+            <span class="pixel-icon icon-notepad"></span>Welcome
           </button>
           <button class="start-menu-item" data-window="about">
             <span class="pixel-icon icon-user"></span>About Me
