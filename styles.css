@@ -1520,3 +1520,246 @@ h2 {
     padding-right: 5px;
   }
 }
+
+/* Windows 98 system-wide window theme */
+:root {
+  --win98-gray: #c0c0c0;
+  --win98-light: #dfdfdf;
+  --win98-white: #ffffff;
+  --win98-dark: #808080;
+  --win98-black: #000000;
+  --win98-navy: #000080;
+  --win98-blue: #1084d0;
+  --win98-teal: #008080;
+  --win98-text: #000000;
+}
+
+body {
+  color: var(--win98-text);
+  font-family: "MS Sans Serif", Tahoma, sans-serif;
+  background: var(--win98-teal);
+}
+
+.desktop {
+  background:
+    radial-gradient(circle, #188f8f 0 1px, transparent 1px),
+    var(--win98-teal);
+  background-size: 4px 4px;
+}
+
+.window,
+.clock-widget,
+.start-menu {
+  border: 2px solid var(--win98-white);
+  outline: 1px solid var(--win98-black);
+  background: var(--win98-gray);
+  box-shadow: 4px 4px 0 var(--win98-black);
+  border-radius: 0;
+}
+
+.title-bar,
+.clock-widget-titlebar {
+  height: 24px;
+  padding: 2px 3px 2px 4px;
+  color: var(--win98-white);
+  background: linear-gradient(90deg, var(--win98-navy), var(--win98-blue));
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.title-bar-label {
+  gap: 5px;
+}
+
+.window-controls {
+  gap: 2px;
+}
+
+.window-controls button,
+.clock-widget-close {
+  width: 18px;
+  height: 18px;
+  color: var(--win98-black);
+  background: var(--win98-gray);
+  border: 2px outset var(--win98-white);
+  box-shadow: none;
+  border-radius: 0;
+  font-size: 13px;
+  line-height: 12px;
+}
+
+.window-controls button:hover,
+.clock-widget-close:hover {
+  color: var(--win98-white);
+  background: var(--win98-navy);
+}
+
+.window-controls button:active,
+.clock-widget-close:active,
+.win-button:active,
+.start-button:active,
+.task-item:active {
+  border-style: inset;
+  box-shadow: none;
+}
+
+.window-body,
+.content-body {
+  color: var(--win98-text);
+  background: var(--win98-gray);
+}
+
+.content-body {
+  min-height: 400px;
+}
+
+.eyebrow,
+.date,
+.project-number,
+.muted {
+  color: var(--win98-navy);
+}
+
+h2,
+.hero-body h1,
+.project-card h3,
+.skill-group h3,
+.timeline-item h3 {
+  color: var(--win98-black);
+  letter-spacing: normal;
+}
+
+h2 span,
+.hero-body h1 span,
+.hero-role b {
+  color: var(--win98-navy);
+}
+
+.content-body > p:not(.eyebrow),
+.hero-copy,
+.project-card p,
+.timeline-item p {
+  color: var(--win98-text);
+}
+
+.info-grid,
+.skill-group,
+.timeline {
+  border-color: var(--win98-dark);
+}
+
+.project-card,
+.skill-pills span,
+.contact-links a {
+  color: var(--win98-text);
+  background: var(--win98-light);
+  border: 2px outset var(--win98-white);
+  border-radius: 0;
+}
+
+.project-card:active,
+.contact-links a:active {
+  border-style: inset;
+}
+
+.project-number {
+  font-weight: 700;
+}
+
+.tags span,
+.skill-pills span {
+  color: var(--win98-text);
+  border: 1px solid var(--win98-dark);
+  background: var(--win98-white);
+}
+
+.contact-links a:hover,
+.contact-links a:focus-visible {
+  color: var(--win98-white);
+  background: var(--win98-navy);
+}
+
+.contact-links a:hover small,
+.contact-links a:focus-visible small,
+.contact-links a:hover > span,
+.contact-links a:focus-visible > span {
+  color: var(--win98-white);
+}
+
+.win-button,
+.start-button,
+.task-item {
+  color: var(--win98-black);
+  background: var(--win98-gray);
+  border: 2px outset var(--win98-white);
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.win-button:hover,
+.win-button.primary {
+  color: var(--win98-white);
+  background: var(--win98-navy);
+}
+
+.notepad-window,
+.minesweeper-window {
+  background: var(--win98-gray);
+}
+
+.notepad-page {
+  border: 0;
+}
+
+.clock-widget-titlebar {
+  cursor: grab;
+}
+
+.clock-widget-body {
+  background: var(--win98-gray);
+}
+
+.clock-widget-time {
+  border: 2px inset var(--win98-white);
+  box-shadow: none;
+}
+
+.start-menu {
+  width: 245px;
+  background: var(--win98-gray);
+}
+
+.start-menu-brand {
+  background: linear-gradient(180deg, var(--win98-navy), #000040);
+}
+
+.start-menu-item {
+  color: var(--win98-black);
+}
+
+.start-menu-item:hover {
+  color: var(--win98-white);
+  background: var(--win98-navy);
+}
+
+.taskbar {
+  height: 36px;
+  border-top: 2px solid var(--win98-white);
+  background: var(--win98-gray);
+  box-shadow: 0 -1px 0 var(--win98-dark);
+}
+
+.taskbar-divider {
+  border-color: var(--win98-dark) var(--win98-white);
+}
+
+.active-task {
+  background: var(--win98-gray);
+  border-style: inset;
+}
+
+.system-tray {
+  border: 2px inset var(--win98-white);
+  box-shadow: none;
+  background: var(--win98-gray);
+}
