@@ -8,7 +8,28 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
 
-  <body>
+  <body aria-busy="true">
+    <div class="boot-loader" id="boot-loader" role="status" aria-live="polite">
+      <div class="boot-dialog">
+        <div class="boot-title-bar">
+          <span>Portfolio - Nipun Kaushalya</span>
+          <span aria-hidden="true">×</span>
+        </div>
+        <div class="boot-body">
+          <div class="boot-brand" aria-hidden="true">
+            <span class="boot-brand-flag"> <i></i><i></i><i></i><i></i> </span>
+            <strong>portfolio<span>98</span></strong>
+          </div>
+          <div class="boot-message">
+            <p id="boot-status">Loading portfolio...</p>
+            <div class="boot-progress" aria-hidden="true">
+              <span></span>
+            </div>
+            <small>Please wait</small>
+          </div>
+        </div>
+      </div>
+    </div>
     <main class="desktop" id="desktop">
       <div class="desktop-grid" aria-label="Portfolio desktop">
         <button class="desktop-icon" data-window="home">

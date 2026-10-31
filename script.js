@@ -6,12 +6,26 @@ const startButton = document.querySelector(".start-button");
 const clockWidget = document.querySelector(".clock-widget");
 const desktopClock = document.querySelector("#desktop-clock");
 const desktopDate = document.querySelector("#desktop-date");
+const bootLoader = document.querySelector("#boot-loader");
 let highestZIndex = 2;
 let activeWindow = "home";
 const savedPositions = new WeakMap();
 const openedWindows = new WeakSet([
   document.querySelector('[data-window-panel="home"]'),
 ]);
+
+function finishBootLoader() {
+  if (!bootLoader) return;
+  bootLoader.classList.add("is-complete");
+  document.body.removeAttribute("aria-busy");
+  window.setTimeout(() => bootLoader.remove(), 300);
+}
+
+if (bootLoader) {
+  window.addEventListener("load", () => {
+    window.setTimeout(finishBootLoader, 1800);
+  });
+}
 
 function getTaskButton(name) {
   return taskItems.querySelector(`[data-task-window="${name}"]`);
